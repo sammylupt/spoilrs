@@ -1,6 +1,10 @@
 SpoilrsRails::Application.routes.draw do
-  resources :posts
 
+  get "/auth/twitter/callback" => "sessions#create"
+  get "/logout" => "sessions#destroy"
+
+  get "sessions/new"
+  resources :posts
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.
