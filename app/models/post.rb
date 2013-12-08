@@ -10,4 +10,9 @@ class Post < ActiveRecord::Base
   def to_param
     self.encrypt
   end
+
+  def reply?
+    post_id.present?
+  end
+  #TODO validation: if post is a reply, the text of the content field must include the @name of the user who posted the original tweet
 end

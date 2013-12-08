@@ -1,6 +1,6 @@
 class TweetSender
 
-  attr_accessor :client
+  attr_accessor :client, :post
 
   def client(user)
     Twitter.configure do |config|
@@ -12,9 +12,26 @@ class TweetSender
   end  
 
   def initialize(post)
+    @post = post
     @client = client(post.user)
-    #tweet = @client.update(text)
-    #binding.pry
+    send_tweet
+  end
+
+  def send_tweet
+    # TODO: check if its a reply
+    # TODO: check if the hash comes back from Twitter
+    # TODO: error handling if things mess up?
+    # TODO: stub this call so I can use rspec
+
+    # if the tweet is not a reply, send it with #update
+    # if the tweet is a reply, send it with other method
+    # twitter_hash = @client.update(self.post.tweet_body)
+    # twitter_id = twitter_hash.attrs.id
+    #update_record(twitter_id)
+  end
+
+  def update_record(twitter_id)
+    self.post.create_tweet(twitter_id: twitter_id)
   end
 
   #TODO: send a tweet.
