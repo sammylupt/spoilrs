@@ -5,12 +5,15 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
+  def show
+    @post = Post.find_by(:id => params[:id])
+  end
+
   def create
-    throw params
     # TODO
-    #@post = current_user.posts.build(post_params)
+    @post = current_user.posts.build(post_params)
     if @post.save
-      #
+      redirect_to @post
     else
       render :new
     end
