@@ -12,6 +12,7 @@ gem 'dotenv-rails'
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
+gem 'hashids'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
