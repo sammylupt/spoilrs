@@ -1,0 +1,99 @@
+class TweetSender
+
+  attr_accessor :client
+
+  def client(user)
+    Twitter.configure do |config|
+      config.consumer_key = ENV['TWITTER_AUTH_TOKEN']
+      config.consumer_secret = ENV['TWITTER_AUTH_SECRET']
+      config.oauth_token = user.token
+      config.oauth_token_secret = user.secret
+    end
+  end  
+
+  def initialize(post)
+    @client = client(post.user)
+    binding.pry
+  end
+
+  #TODO: send a tweet.
+  # accomplished with @client.update(text)
+  # The tweet is published by the user logged in as @client
+  # that action returns a massive hash, which includes key points like
+  # return.attrs.id, return.attrs.id_str
+end
+
+# @attrs=
+#   {:created_at=>"Sun Dec 08 21:59:21 +0000 2013",
+#    :id=>409804416666320896,
+#    :id_str=>"409804416666320896",
+#    :text=>"testing testing",
+#    :source=>
+#     "<a href=\"http://scottluptowski.com/sandbox/spoil2/connect.php\" rel=\"nofollow\">SLtesting</a>
+#    :truncated=>false,
+#    :in_reply_to_status_id=>nil,
+#    :in_reply_to_status_id_str=>nil,
+#    :in_reply_to_user_id=>nil,
+#    :in_reply_to_user_id_str=>nil,
+#    :in_reply_to_screen_name=>nil,
+#    :user=>
+#     {:id=>14076386,
+#      :id_str=>"14076386",
+#      :name=>"scott luptowski",
+#      :screen_name=>"scottluptowski",
+#      :location=>"new york city",
+#      :description=>
+#       "digital strategist turned student #rails dev at @flatironschool. world traveler, music listen
+#      :url=>"http://t.co/3C9xUtWUvo",
+#      :entities=>
+#       {:url=>
+#         {:urls=>
+#           [{:url=>"http://t.co/3C9xUtWUvo",
+#             :expanded_url=>"http://www.scottluptowski.com",
+#             :display_url=>"scottluptowski.com",
+#             :indices=>[0, 22]}]},
+#        :description=>{:urls=>[]}},
+#      :protected=>false,
+#      :followers_count=>635,
+#      :friends_count=>509,
+#      :listed_count=>31,
+#      :created_at=>"Tue Mar 04 04:49:47 +0000 2008",
+#      :favourites_count=>81,
+#      :utc_offset=>-21600,
+#      :time_zone=>"Central Time (US & Canada)",
+#      :geo_enabled=>true,
+#      :verified=>false,
+#      :statuses_count=>4285,
+#      :lang=>"en",
+#      :contributors_enabled=>false,
+#      :is_translator=>false,
+#      :profile_background_color=>"131516",
+#      :profile_background_image_url=>
+#       "http://a0.twimg.com/profile_background_images/126279251/bg-x.png",
+#      :profile_background_image_url_https=>
+#       "https://si0.twimg.com/profile_background_images/126279251/bg-x.png",
+#      :profile_background_tile=>false,
+#      :profile_image_url=>
+#       "http://pbs.twimg.com/profile_images/378800000495417721/1b0cf8b8ae54a6a904a9cefd1cf2432a_norma
+#      :profile_image_url_https=>
+#       "https://pbs.twimg.com/profile_images/378800000495417721/1b0cf8b8ae54a6a904a9cefd1cf2432a_norm
+#      :profile_link_color=>"009999",
+#      :profile_sidebar_border_color=>"EEEEEE",
+#      :profile_sidebar_fill_color=>"EFEFEF",
+#      :profile_text_color=>"333333",
+#      :profile_use_background_image=>false,
+#      :default_profile=>false,
+#      :default_profile_image=>false,
+#      :following=>false,
+#      :follow_request_sent=>false,
+#      :notifications=>false},
+#    :geo=>nil,
+#    :coordinates=>nil,
+#    :place=>nil,
+#    :contributors=>nil,
+#    :retweet_count=>0,
+#    :favorite_count=>0,
+#    :entities=>{:hashtags=>[], :symbols=>[], :urls=>[], :user_mentions=>[]},
+#    :favorited=>false,
+#    :retweeted=>false,
+#    :lang=>"en"}>
