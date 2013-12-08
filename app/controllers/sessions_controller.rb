@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     if @user
       session[:token] = @user.token
       session[:secret] = @user.secret
-      redirect_to 'http://www.google.com'
+      redirect_to new_post_path
       # TODO redirect
     else
       # TODO

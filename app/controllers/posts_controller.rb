@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_filter :check_for_current_user, only: :new
 
   def new
     @post = Post.new
