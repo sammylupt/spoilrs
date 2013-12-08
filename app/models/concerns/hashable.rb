@@ -5,16 +5,18 @@ module Hashable
   end
 
   def encrypt
-    hashids = Hashids.new ENV['HASH_SALT']
-    hashids.encrypt(self.id)
+    self.class.hashids.encrypt(self.id)
   end
 
   module ClassMethods
     def decrypt(num)
-      # TODO figure out the best place for this
-      hashids = Hashids.new ENV['HASH_SALT']
       num = hashids.decrypt(num)
       Post.find_by(:id => num)
     end
+
+    def hashids
+      @hashids ||= Hashids.new ENV['HASH_SALT']
+    end
+
   end
 end
