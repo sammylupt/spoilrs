@@ -13,7 +13,8 @@ class TweetSender
 
   def initialize(post)
     @client = client(post.user)
-    binding.pry
+    #tweet = @client.update(text)
+    #binding.pry
   end
 
   #TODO: send a tweet.

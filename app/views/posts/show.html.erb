@@ -5,3 +5,5 @@
 <p>Posted by <%= @post.user.name %>
 <p><%= @post.inspect %></p>
 <p><%= @post.user.inspect %></p>
+
+<%= link_to "Reply to this post", new_reply_path(@post) %>

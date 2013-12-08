@@ -1,12 +1,3 @@
-<%= form_for(@post) do |f| %>
+<h1>Make a new post</h1>
 
-  <p>
-    <%= f.label :content %>
-    <%= f.text_field :content %>
-  </p>
-  <p>
-    <%= f.label :secret %>
-    <%= f.text_field :secret %>
-  </p>
-  <%= f.submit %>
-<% end %>
+<%= render 'form' %>

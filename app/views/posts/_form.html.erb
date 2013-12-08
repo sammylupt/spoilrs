@@ -1,0 +1,21 @@
+<%= form_for(@post) do |f| %>
+
+  <p>
+    <%= f.label :content %>
+    <% if @post.post_id %>
+    <% # TODO: remove this logic from the view %>
+    <% # TODO: also display the content of the previous post %>   
+    <%= f.text_field :content, :value => "@#{Post.find(@post.post_id).user.screen_name}" %>
+    <% else %>
+    <%= f.text_field :content %>
+    <% end %>
+  </p>
+  <p>
+    <%= f.label :secret %>
+    <%= f.text_field :secret %>
+  </p>
+  <p>
+    <%= f.hidden_field :post_id %>
+  </p>
+  <%= f.submit %>
+<% end %>

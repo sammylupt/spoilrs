@@ -1,9 +1,13 @@
 class PostsController < ApplicationController
   before_filter :check_for_current_user, only: :new
-  before_filter :decrypt_from_params, only: :show
+  before_filter :decrypt_from_params, only: [:show, :reply]
 
   def new
     @post = Post.new
+  end
+
+  def reply
+    @post = @post.replies.build
   end
 
   def show
