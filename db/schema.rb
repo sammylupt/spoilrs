@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131208174620) do
+ActiveRecord::Schema.define(version: 20131208194725) do
 
   create_table "posts", force: true do |t|
     t.string   "content"
     t.string   "secret"
-    t.string   "tweet_id"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,6 +23,15 @@ ActiveRecord::Schema.define(version: 20131208174620) do
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
+
+  create_table "tweets", force: true do |t|
+    t.integer  "twitter_id"
+    t.integer  "post_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tweets", ["post_id"], name: "index_tweets_on_post_id"
 
   create_table "users", force: true do |t|
     t.string   "name"
