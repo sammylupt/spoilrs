@@ -46,4 +46,19 @@ describe Post do
       expect(@child.parent_tweet_id).to eq 1
     end
   end
+
+  context "incorrect reply" do 
+    before :each do 
+      @child = @post.replies.build(attributes_for(:incorrect_reply))
+    end
+
+    it "does not get saved" do 
+      expect{ @child.save }.to_not change { Post.count }
+    end
+
+    it "does not validate" do 
+      @child.save
+      expect(@child).to have(1).error_on(:content)
+    end
+  end
 end
