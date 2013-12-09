@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   has_many :posts
 
   def self.find_or_create_by_omniauth(hash)
-    binding.pry
     user_token = hash["credentials"]["token"]
     user_secret = hash["credentials"]["secret"]
     #TODO: build in what happens if a Twitter user changes their name

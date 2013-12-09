@@ -19,10 +19,27 @@ describe User do
 
   context "find or create by omniauth" do 
 
-    it "is created by omniauth" do 
-      user = User.find_or_create_by_omniauth(omniauth_hash)
-      expect(User.first).to eq user
+    before :each do 
+      @user = User.find_or_create_by_omniauth(omniauth_hash)
+    end
+
+    it "creates one user via omniauth" do 
+      expect(User.first).to eq @user
+      expect(User.count).to eq 1
+    end
+
+    context "finding users" do 
+      before :each do 
+        @user_call = User.find_or_create_by_omniauth(omniauth_hash)
+      end
+
+      it "finds users who already exist" do 
+        expect(@user).to eq @user_call
+      end
+
+      it "does not create a new user" do 
+        expect(User.count).to eq 1
+      end
     end
   end
-
 end
