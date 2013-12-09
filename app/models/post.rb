@@ -2,7 +2,7 @@ class Post < ActiveRecord::Base
   belongs_to :user
   has_one :tweet
   has_many :replies, :class_name => "Post",
-                     :foreign_key => "post_id"
+           :foreign_key => "post_id"
 
   validates :content, :secret, presence: true
   validates :content, length: { maximum: 120 }
