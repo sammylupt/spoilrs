@@ -9,7 +9,7 @@ describe User do
         "token" => "Test Token",
         "secret" => "Test Secret"
       },
-      "uid" => 100,
+      "uid" => "100",
       "info" => {
         "name" => "Test Name",
         "nickname" => "Test Nickname"
