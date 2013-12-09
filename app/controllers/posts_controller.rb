@@ -14,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def create
-    # TODO
     @post = current_user.posts.build(post_params)
     if @post.save
       @post.tweet!

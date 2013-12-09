@@ -8,7 +8,9 @@ gem 'jquery-rails'
 gem 'faker'
 gem 'jbuilder', '~> 1.2'
 gem 'dotenv-rails'
+gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails', :github => 'anjlab/bootstrap-rails'
 
+#Twitter Stuff
 gem 'omniauth'
 gem 'omniauth-twitter'
 gem 'twitter'
@@ -43,5 +45,5 @@ group :test, :development do
   gem "database_cleaner"
   gem "guard", ">=2.1.0"
   gem "guard-rspec"
-  gem "webmock"
+ # gem "webmock"
 end
