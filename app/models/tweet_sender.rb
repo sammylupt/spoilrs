@@ -14,27 +14,28 @@ class TweetSender
   def initialize(post)
     @post = post
     @client = client(post.user)
-    send_tweet
+    dispatch_tweet
   end
 
-  def send_tweet
-
-    # TODO: Refactor 
+  def dispatch_tweet
     # TODO: check if the hash comes back from Twitter
     # TODO: error handling if things mess up?
-    
-    twitter_hash = if post.reply?
-      @client.update(self.post.tweet_body, {:in_reply_to_status_id => self.post.parent_tweet_id})
-    else
-      @client.update(self.post.tweet_body)
-    end
 
+    twitter_hash = post.reply? send_tweet_as_reply : send_tweet
     twitter_id = twitter_hash[:attrs][:id]
     update_record(twitter_id)
   end
 
   def update_record(twitter_id)
     self.post.create_tweet(twitter_id: twitter_id)
+  end
+
+  def send_tweet
+    @client.update(self.post.tweet_body)
+  end
+
+  def send_tweet_as_reply
+    @client.update(self.post.tweet_body, {:in_reply_to_status_id => self.post.parent_tweet_id})
   end
 
   #TODO: send a tweet.
