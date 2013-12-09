@@ -30,11 +30,12 @@ class Post < ActiveRecord::Base
 
   private
   def check_replies_for_proper_format
-    # Twitter requires that tweets sent as a reply to a user
+    # Twitter requires that tweets sent as a reply to @username
     # start with the format "@username "
 
     if self.reply? && !self.content.start_with?(self.parent.formatted_sender)
       errors.add(:content, "Replies must start with the correct user name")
     end
   end
+
 end
