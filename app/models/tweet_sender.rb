@@ -2,6 +2,12 @@ class TweetSender
 
   attr_accessor :client, :post
 
+  def initialize(post)
+    @post = post
+    @client = client(post.user)
+    dispatch_tweet
+  end
+
   def client(user)
     Twitter.configure do |config|
       config.consumer_key = ENV['TWITTER_AUTH_TOKEN']
@@ -10,12 +16,6 @@ class TweetSender
       config.oauth_token_secret = user.secret
     end
   end  
-
-  def initialize(post)
-    @post = post
-    @client = client(post.user)
-    dispatch_tweet
-  end
 
   def dispatch_tweet
     # TODO: check if the hash comes back from Twitter
@@ -37,12 +37,6 @@ class TweetSender
   def send_tweet_as_reply
     @client.update(self.post.tweet_body, {:in_reply_to_status_id => self.post.parent_tweet_id})
   end
-
-  #TODO: send a tweet.
-  # accomplished with @client.update(text)
-  # The tweet is published by the user logged in as @client
-  # that action returns a massive hash, which includes key points like
-  # return.attrs.id, return.attrs.id_str
 end
 
 # @attrs=
