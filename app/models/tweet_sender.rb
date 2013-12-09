@@ -18,7 +18,7 @@ class TweetSender
   end
 
   def send_tweet
-    # TODO: check if its a reply
+    # TODO: check if its a reply post.reply?
     # TODO: check if the hash comes back from Twitter
     # TODO: error handling if things mess up?
     # TODO: stub this call so I can use rspec
