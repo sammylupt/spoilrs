@@ -4,7 +4,7 @@ require 'faker'
 FactoryGirl.define do
   factory :user do
     name { Faker::Name.first_name }
-    screen_name { Faker::Internet.user_name }
+    screen_name { "nickname" }
     tid { rand(0.1000) }
     token ENV['SCOTT_TOKEN']
     secret ENV['SCOTT_SECRET']

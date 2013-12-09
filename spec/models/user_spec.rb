@@ -12,7 +12,7 @@ describe User do
       "uid" => 100,
       "info" => {
         "name" => "Test Name",
-        "nickname" => "Test Nickname"
+        "nickname" => "nickname"
       }
     }
   }
