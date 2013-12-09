@@ -4,7 +4,10 @@ class Post < ActiveRecord::Base
   has_many :replies, :class_name => "Post",
                      :foreign_key => "post_id"
 
-  #TODO validation: if post is a reply, the text of the content field must include the @name of the user who posted the original tweet
+  validates :content, :secret, presence: true
+  validates :content, length: { maximum: 120 }
+  validates :secret, length: { maximum: 200 }
+  validate :check_replies_for_proper_format
 
   include Tweetable
   include Hashable
@@ -25,5 +28,13 @@ class Post < ActiveRecord::Base
     parent ? parent.tweet.twitter_id : nil
   end
 
-  #TODO validation: if post is a reply, the text of the content field must include the @name of the user who posted the original tweet
+  private
+  def check_replies_for_proper_format
+    # Twitter requires that tweets sent as a reply to a user
+    # start with the format "@username "
+
+    if self.reply? && !self.content.start_with?(self.parent.formatted_sender)
+      errors.add(:content, "Replies must start with the correct user name")
+    end
+  end
 end

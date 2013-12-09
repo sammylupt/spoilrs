@@ -1,7 +1,17 @@
+<div class="row">
+<div class="col-md-6 col-md-offset-3">
+<div class="jumbotron">
+
 <%= form_for(@post) do |f| %>
 
+  <% if @post.errors.any? %>
+    <%= @post.errors.inspect %>
+  <% end %>
+
   <p>
-    <%= f.label :content %>
+    <%= f.label :content, "Your Tweet" %>
+  </p>
+  <p>
     <% if @post.post_id %>
     <% # TODO: remove this logic from the view %>
     <% # TODO: also display the content of the previous post %>   
@@ -11,7 +21,9 @@
     <% end %>
   </p>
   <p>
-    <%= f.label :secret %>
+    <%= f.label :secret, "Your Secret" %>
+  </p>
+  <p>
     <%= f.text_field :secret %>
   </p>
   <p>
@@ -19,3 +31,6 @@
   </p>
   <%= f.submit %>
 <% end %>
+</div>
+</div>
+</div>
