@@ -21,7 +21,7 @@ class TweetSender
     # TODO: check if the hash comes back from Twitter
     # TODO: error handling if things mess up?
 
-    twitter_hash = post.reply? send_tweet_as_reply : send_tweet
+    twitter_hash = post.reply? ? send_tweet_as_reply : send_tweet
     twitter_id = twitter_hash[:attrs][:id]
     update_record(twitter_id)
   end
