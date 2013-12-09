@@ -14,5 +14,14 @@ class Post < ActiveRecord::Base
   def reply?
     post_id.present?
   end
+
+  def parent
+    reply? ? Post.find(self.post_id) : nil
+  end
+
+  def parent_tweet_id
+    parent ? parent.tweet.twitter_id : nil
+  end
+
   #TODO validation: if post is a reply, the text of the content field must include the @name of the user who posted the original tweet
 end

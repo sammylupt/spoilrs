@@ -6,7 +6,7 @@ FactoryGirl.define do
     name { Faker::Name.first_name }
     screen_name { Faker::Internet.user_name }
     tid { rand(0.1000) }
-    token "MyString"
-    secret "MyString"
+    token ENV['SCOTT_TOKEN']
+    secret ENV['SCOTT_SECRET']
   end
 end

@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe Post do
 
+  WebMock.stub_request(:any, "https://api.twitter.com").to_return(status: 200, body: "stubbed", headers: {})
+
   before :each do 
     @u = FactoryGirl.create(:user)
     p = FactoryGirl.attributes_for(:post)
@@ -9,12 +11,8 @@ describe Post do
     @post = @u.posts.first
   end
 
-  it "belongs to a user" do 
-    expect(@u.posts.count).to eq 1
-  end
-
   it "creates a tweet when it is posted" do 
-    expect(@post.tweet).to be_a Tweet
+   expect(@post.tweet).to be_a Tweet
   end
 
   context "replies" do 
@@ -32,5 +30,4 @@ describe Post do
   it "knows that it is a reply" do 
     expect(@new_post.reply?).to eq true
   end
-
 end

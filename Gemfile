@@ -43,4 +43,5 @@ group :test, :development do
   gem "database_cleaner"
   gem "guard", ">=2.1.0"
   gem "guard-rspec"
+  gem "webmock"
 end
