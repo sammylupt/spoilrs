@@ -5,8 +5,8 @@ describe Post do
   #WebMock.stub_request(:any, "https://api.twitter.com").to_return(status: 200, body: "stubbed", headers: {})
 
   before :each do 
-    @u = FactoryGirl.create(:user)
-    @post = @u.posts.create(FactoryGirl.attributes_for(:post))
+    @u = create(:user)
+    @post = @u.posts.create(attributes_for(:post))
   end
 
   context "non-reply post" do 
@@ -26,7 +26,7 @@ describe Post do
 
   context do "reply post" 
     before :each do 
-      @child = @post.replies.create(FactoryGirl.attributes_for(:reply_post))
+      @child = @post.replies.create(attributes_for(:reply_post))
     end
 
     it "can be a reply to another post" do 
