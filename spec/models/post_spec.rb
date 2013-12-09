@@ -11,7 +11,7 @@ describe Post do
 
   context "non-reply post" do 
 
-    it "is not a reply" do 
+    it "knows it is not a reply" do 
       expect(@post.reply?).to eq false
     end
 
@@ -29,7 +29,7 @@ describe Post do
       @child = @post.replies.create(attributes_for(:reply_post))
     end
 
-    it "can be a reply to another post" do 
+    it "is a reply to another post" do 
       expect(@post.replies.first).to eq @child
     end
 
@@ -41,7 +41,7 @@ describe Post do
       expect(@child.parent).to eq @post
     end
 
-    it "knows their parents tweet id" do 
+    it "knows its parents tweet id" do 
       @post.tweet.stub(:twitter_id) { 1 }
       expect(@child.parent_tweet_id).to eq 1
     end
